@@ -6,6 +6,7 @@ import 'package:video_player/video_player.dart';
 class VideoView extends StatefulWidget {
   const VideoView({super.key, required this.path});
   final String path;
+  
 
   @override
   State<VideoView> createState() => _VideoViewState();
@@ -13,6 +14,7 @@ class VideoView extends StatefulWidget {
 
 class _VideoViewState extends State<VideoView> {
   late VideoPlayerController _controller;
+  
 
   @override
   void initState() {
@@ -24,7 +26,6 @@ class _VideoViewState extends State<VideoView> {
     // });
     // _controller.setLooping(true);
     _controller.initialize().then((_) => setState(() {}));
-  
   }
 
   @override
@@ -70,7 +71,7 @@ class _VideoViewState extends State<VideoView> {
                     aspectRatio: _controller.value.aspectRatio,
                     child: VideoPlayer(_controller),
                   )
-                : Container(),
+                : const CircularProgressIndicator(),
           ),
           Positioned(
             bottom: 0,
@@ -130,17 +131,21 @@ class _VideoViewState extends State<VideoView> {
             child: InkWell(
                 onTap: () {
                   setState(() {
-                    _controller.value.isPlaying?_controller.pause():_controller.play();
+                    _controller.value.isPlaying
+                        ? _controller.pause()
+                        : _controller.play();
                   });
                 },
                 child: CircleAvatar(
-                  radius: 33,
-                  backgroundColor: Colors.black38,
+                    radius: 33,
+                    backgroundColor: Colors.black38,
                     child: Icon(
-                  _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-                  color: Colors.white,
-                  size: 50,
-                ))),
+                      _controller.value.isPlaying
+                          ? Icons.pause
+                          : Icons.play_arrow,
+                      color: Colors.white,
+                      size: 50,
+                    ))),
           )
         ]),
       ),

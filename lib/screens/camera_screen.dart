@@ -1,5 +1,3 @@
-
-
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:full_stack_whatsapp_flutter/screens/camera_view_page.dart';
@@ -21,6 +19,8 @@ class _CameraScreenState extends State<CameraScreen> {
       CameraController(cameras[0], ResolutionPreset.high);
   late Future<void> cameraValue;
   bool isRecording = false;
+  bool flash = false;
+  bool frontcamera = false;
 
   @override
   void initState() {
@@ -68,12 +68,26 @@ class _CameraScreenState extends State<CameraScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
-                            Icons.flash_off,
-                            color: Colors.white,
-                            size: 28,
-                          )),
+                          onPressed: () {
+                            setState(() {
+                              flash = !flash;
+                            });
+                            flash
+                                ? _cameraController
+                                    .setFlashMode(FlashMode.torch)
+                                : _cameraController.setFlashMode(FlashMode.off);
+                          },
+                          icon: flash
+                              ? const Icon(
+                                  Icons.flash_on,
+                                  color: Colors.teal,
+                                  size: 28,
+                                )
+                              : const Icon(
+                                  Icons.flash_off,
+                                  color: Colors.white,
+                                  size: 28,
+                                )),
                       GestureDetector(
                         onLongPress: () async {
                           // final videoPath = join(
@@ -121,10 +135,18 @@ class _CameraScreenState extends State<CameraScreen> {
                               ),
                       ),
                       IconButton(
-                          onPressed: () {},
-                          icon: const Icon(
+                          onPressed: () async {
+                            setState(() {
+                              frontcamera = !frontcamera;
+                            });
+                            int cameraPos = frontcamera ? 1 : 0;
+                            _cameraController = CameraController(
+                                cameras[cameraPos], ResolutionPreset.high);
+                            cameraValue = _initializeCamera();
+                          },
+                          icon: Icon(
                             Icons.flip_camera_ios,
-                            color: Colors.white,
+                            color: frontcamera ? Colors.teal : Colors.white,
                             size: 28,
                           ))
                     ],
