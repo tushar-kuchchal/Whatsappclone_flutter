@@ -21,13 +21,14 @@ class _SelectContacctState extends State<SelectContacct> {
   }
 
   List<ChatModel> selectContact = [
-    ChatModel(name: 'Mitrsen Yadav', status: 'IAS', icon: 'personIcon.svg'),
-    ChatModel(name: 'Vaishali', status: 'Busy', icon: 'personIcon.svg'),
+    ChatModel(name: 'Mitrsen Yadav', status: 'IAS',  id:1, icon: 'personIcon.svg'),
+    ChatModel(name: 'Vaishali', status: 'Busy',  id:2, icon: 'personIcon.svg'),
     ChatModel(
         name: 'Harsh 2',
+          id:3,
         status: 'Hey there, I am usign whatsapp',
         icon: 'personIcon.svg'),
-    ChatModel(name: 'Home', status: 'lonely', icon: 'personIcon.svg'),
+    ChatModel(name: 'Home',  id:4, status: 'lonely', icon: 'personIcon.svg'),
   ];
 
   @override

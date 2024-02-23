@@ -1,11 +1,15 @@
 // ignore_for_file: prefer_const_constructors, sort_child_properties_last
 
 import 'package:flutter/material.dart';
+import 'package:full_stack_whatsapp_flutter/model/chat_model.dart';
 import 'package:full_stack_whatsapp_flutter/pages/camera.dart';
 import 'package:full_stack_whatsapp_flutter/pages/chats.dart';
 
 class Home extends StatefulWidget {
-  const Home({super.key});
+  const Home({super.key, required this.chats,required this.sourceChat});
+  final List<ChatModel> chats;
+  final ChatModel sourceChat;
+
 
   @override
   State<Home> createState() => _HomeState();
@@ -33,7 +37,7 @@ class _HomeState extends State<Home> {
             PopupMenuButton(
               color: Color.fromARGB(255, 19, 149, 134),
               onSelected: (val){
-                print(val);
+                debugPrint(val);
               },
 
               itemBuilder: (BuildContext context) {
@@ -65,9 +69,9 @@ class _HomeState extends State<Home> {
                 ),
               ]),
         ),
-        body: const TabBarView(children: [
+        body:  TabBarView(children: [
           CameraPage(),
-         Chats(),
+         Chats(chats:widget.chats, sourceChat: widget.sourceChat),
           Text('STATUS'),
           Text('CALLS'),
         ]),

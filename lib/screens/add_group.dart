@@ -18,45 +18,54 @@ class _AddGroupState extends State<AddGroup> {
         name: 'Saksham',
         icon: 'personIcon.svg',
         status: 'Flutter Developer',
+        id: 1,
         selected: false),
     ChatModel(
         name: 'Surya Pratap',
         icon: 'personIcon.svg',
         status: 'ios Developer',
+        id: 2,
         selected: false),
     ChatModel(
         name: 'Mandeep singh',
         icon: 'personIcon.svg',
+        id: 3,
         status: 'senior Android Developer',
         selected: false),
     ChatModel(
         name: 'Krishan Dev',
         icon: 'personIcon.svg',
+        id: 4,
         status: 'React Native Developer',
         selected: false),
     ChatModel(
         name: 'Tushar Kuchchal',
         icon: 'personIcon.svg',
+        id: 5,
         status: 'Flutter and React Native Developer',
         selected: false),
     ChatModel(
         name: ' Mo. Saif',
         icon: 'personIcon.svg',
         status: 'Php Developer',
+        id: 6,
         selected: false),
     ChatModel(
         name: 'sarthak',
         icon: 'personIcon.svg',
+        id: 7,
         status: 'Full Stack Developer',
         selected: false),
     ChatModel(
         name: 'Ashu saini',
         icon: 'personIcon.svg',
+        id: 8,
         status: 'Node js Developer',
         selected: false),
     ChatModel(
         name: 'Kuldeep yadav',
         icon: 'personIcon.svg',
+        id: 9,
         status: 'React Native Developer',
         selected: false)
   ];
@@ -68,10 +77,8 @@ class _AddGroupState extends State<AddGroup> {
     // Implement some initialization operations here.
   }
 
-
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       floatingActionButton: newgroupList.isNotEmpty
           ? FloatingActionButton(
@@ -109,7 +116,6 @@ class _AddGroupState extends State<AddGroup> {
                   padding: EdgeInsets.all(10),
                   height: 100,
                   child: ListView.builder(
-                  
                       itemCount: newgroupList.length,
                       scrollDirection: Axis.horizontal,
                       itemBuilder: (context, index) {
@@ -119,7 +125,6 @@ class _AddGroupState extends State<AddGroup> {
                               newgroupList[index].selected = false;
                               newgroupList.removeAt(index);
                             });
-                            
                           },
                           child: Container(
                             margin: EdgeInsets.only(right: 10),
@@ -162,7 +167,6 @@ class _AddGroupState extends State<AddGroup> {
                                   style: TextStyle(
                                     fontWeight: FontWeight.w600,
                                     color: Colors.black,
-                                    
                                   ),
                                 ),
                               ],
@@ -189,9 +193,7 @@ class _AddGroupState extends State<AddGroup> {
                         } else {
                           contacts[index].selected = true;
                           newgroupList.add(contacts[index]);
-                          
                         }
-                        
                       });
                     },
                   );

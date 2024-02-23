@@ -6,7 +6,10 @@ import 'package:full_stack_whatsapp_flutter/model/chat_model.dart';
 import 'package:full_stack_whatsapp_flutter/screens/select_contact.dart';
 
 class Chats extends StatefulWidget {
-  const Chats({super.key});
+  const Chats({super.key, required this.chats, required this.sourceChat});
+  final List<ChatModel> chats;
+  final ChatModel sourceChat;
+
 
   @override
   State<Chats> createState() => _ChatsState();
@@ -21,33 +24,7 @@ class _ChatsState extends State<Chats> {
 
   @override
   Widget build(BuildContext context) {
-    List<ChatModel> chats = [
-      ChatModel(
-          name: 'Tushar Kuchchal',
-          icon: 'personIcon.svg',
-          isGroup: false,
-          time: '9:10 am',
-          currentMessage: 'Hello tushar, how are you?'),
-      ChatModel(
-          name: 'Vishal Kuchchal kuchchal',
-          icon: 'personIcon.svg',
-          isGroup: false,
-          time: '12:10 am',
-          currentMessage: 'Hello vishal , Please send me your email id'),
-      ChatModel(
-          name: 'Modi Sarkar',
-          icon: 'groupIcon.svg',
-          isGroup: true,
-          time: '9:10 am',
-          currentMessage: 'What is the poll in gujrat'),
-      ChatModel(
-          name: 'Harsh Jain',
-          icon: 'personIcon.svg',
-          isGroup: false,
-          time: '9:10 am',
-          currentMessage:
-              'hi Harsh jain, we will go tonight for dinner, are you ok with that'),
-    ];
+    
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         shape: const CircleBorder(),
@@ -62,10 +39,11 @@ class _ChatsState extends State<Chats> {
         ),
       ),
       body: ListView.builder(
-        itemCount: chats.length,
+        itemCount: widget.chats.length,
         itemBuilder: (context, index) {
           return ChatCard(
-            chatmodel: chats[index],
+            chatmodel:  widget.chats[index],
+            sourceChat:widget.sourceChat
           );
         },
       ),

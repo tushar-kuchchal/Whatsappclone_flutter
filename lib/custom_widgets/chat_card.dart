@@ -7,7 +7,8 @@ import 'package:full_stack_whatsapp_flutter/model/chat_model.dart';
 
 class ChatCard extends StatelessWidget {
  final ChatModel chatmodel;
-  const ChatCard({super.key,required this.chatmodel});
+ final ChatModel sourceChat;
+  const ChatCard({super.key,required this.chatmodel, required this.sourceChat});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class ChatCard extends StatelessWidget {
       children: [
         InkWell(
           onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=> IndividualChats(chatModel: chatmodel)));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=> IndividualChats(chatModel: chatmodel, sourceChat:sourceChat)));
             
           },
           child: ListTile(
